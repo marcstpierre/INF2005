@@ -1,4 +1,6 @@
 #include "Voyage.h"
+
+
 using namespace msp;
 
 Voyage::Voyage()
@@ -10,3 +12,41 @@ Voyage::~Voyage()
 {
     //dtor
 }
+
+std::ostream & operator << (std::ostream &sortie, Voyage &v)
+{
+        sortie << "blah" << std::endl;
+//        sortie << "Id : " << v.Getid() << std::endl;
+    return sortie; // Permet l’opération « cout << a << b »;
+}
+// Surcharge de l’opérateur d’extraction
+std::istream &operator>>(std::istream &entree, Voyage &v)
+{
+    std::string voyage_selectionne;
+    std::cout << std::endl << "Veuillez sélectionner le voyage en entrant sont numéro : " << std::endl;
+    std::cout << "Nom : "<<std::endl;
+    std::getline(entree, voyage_selectionne);
+    return entree; // Permet l’opération « cin >> a >> b »;
+}
+
+void Voyage::print(){
+    std::cout << this->id << ") départ: " << this->date_depart.GetFullDate()<< ", Arrivee: " << this->date_arrivee.GetFullDate() << ", nombre de places: " << this->Getnombreplacesdispo() << "(" << nombre_places_dispo << ")" <<std::endl;
+}
+
+unsigned int Voyage::Getnombreplacesdispo(){
+    std::cout << "nbre de places:" << nombre_places_dispo << std::endl;
+    return nombre_places_dispo;}
+
+void Voyage::Reserve_places(int n){
+    Setnombreplacesdispo(Getnombreplacesdispo() - n);}
+
+void Voyage::Setnombreplacesdispo(int n){
+    nombre_places_dispo = n;}
+
+void Voyage::Setautobus(Autobus* val) {
+    autobus = val;
+    Setnombreplacesdispo(autobus->GetNbreSieges());
+    std::cout << "nbre de places:" << nombre_places_dispo << std::endl;
+    std::cout << "nbre de places:" << this->Getnombreplacesdispo() << std::endl;
+
+    }

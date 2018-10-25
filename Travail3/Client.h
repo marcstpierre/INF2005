@@ -1,7 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include <Personne.h>
+#include "Personne.h"
 
 namespace msp{
 class Client : public Personne
@@ -13,5 +13,5 @@ class Client : public Personne
     private:
 };
 
-};
+}
 #endif // CLIENT_H
