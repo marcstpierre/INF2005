@@ -14,11 +14,11 @@ void init(){
     Autobus aF;
     aF.SetNbreSieges(63);
     aF.Settype(Voyage::FUMEUR);
-    
+
     Autobus aFb;
     aFb.SetNbreSieges(55);
     aFb.Settype(Voyage::FUMEUR);
-    
+
     Autobus aNF;
     aNF.SetNbreSieges(63);
     aNF.Settype(Voyage::NON_FUMEUR);
@@ -62,11 +62,40 @@ void presente_list_voyage(std::list<Voyage> voyages){
 	};
 }
 
+Voyage* get_voyage_par_id(int i, std::list<Voyage> voyages){
+    std::cout << "Recherche d'un voyage dont le id est " << i << std::endl;
+    std::list<Voyage>::iterator it;
+    std::list<Voyage>::iterator end;
+    for (it = voyages.begin(), end = voyages.end(); it != end; ++it) {
+        Voyage v = (*it);
+        std::cout << "Voyage #" << v.Getid() << std::endl;
+        if (v.Getid() == i){
+            std::cout << "On retourne v" << std::endl;
+            return &v;
+        }
+	};
+	return NULL;
+
+}
+
+Voyage* select_voyage(std::list<Voyage> voyages){
+    presente_list_voyage(voyages);
+    int selected_id = 0;
+
+    Voyage* v = NULL;
+
+    do {
+        v = get_voyage_par_id(selected_id, voyages);
+        std::cout << "Veuillez ecrire le numero du voyage selectionne s'il vous plait..." << std::endl;
+        std::cin >> selected_id;
+        std::cout << "Vous avec selectionne le voyage " << selected_id << std::endl;
+    } while(v == NULL);
+    return v;
+}
+
 int main(){
     init();
     char type_voyage = demande_type_voyage();
     std::list<Voyage> voyages = repartiteur.get_voyages(type_voyage);
-    presente_list_voyage(voyages);
-
-
+    Voyage* voyage_selectionne = select_voyage(voyages);
 }

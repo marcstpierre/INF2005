@@ -22,3 +22,4 @@ void Repartiteur::ajout_voyage(char type_voyage, Voyage v){
 	}
 	std::cout << "ajout du voyage " << v.Getid() << " avec " << v.Getnombreplacesdispo() << " sieges" << std::endl;
 }
+
