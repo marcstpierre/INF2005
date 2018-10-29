@@ -30,15 +30,15 @@ class Voyage
         void Setnombreplacesdispo(int );
 
         friend std::ostream & operator << (std::ostream &, Voyage &);
-        friend std::istream &operator>>(std::istream &, Voyage &);
+        friend std::istream & operator >> (std::istream &, Voyage &);
 
         void print();
 
-	static const char FUMEUR = 'F';
-	static const char NON_FUMEUR = 'N';
+        static const char FUMEUR = 'F';
+        static const char NON_FUMEUR = 'N';
     protected:
     private:
-        int id;
+        int id = -1;
         Date date_depart;
         Date date_arrivee;
         std::string lieu_depart;

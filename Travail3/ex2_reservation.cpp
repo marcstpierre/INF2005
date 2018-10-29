@@ -52,50 +52,74 @@ const char demande_type_voyage(){
     }
 }
 
-void presente_list_voyage(std::list<Voyage> voyages){
+void presente_list_voyage(std::list<Voyage*> voyages){
 	std::cout << "Voici la liste des voyages disponibles et le nombre de places disponibles :" << std::endl;
 
-	for (std::list<Voyage>::iterator it = voyages.begin(), end = voyages.end(); it != end; ++it) {
-        Voyage v = (*it);
+	for (std::list<Voyage*>::iterator it = voyages.begin(), end = voyages.end(); it != end; ++it) {
 		//std::cout << v << std::endl;
-		v.print();
+		(*it)->print();
 	};
 }
 
-Voyage* get_voyage_par_id(int i, std::list<Voyage> voyages){
+Voyage* get_voyage_par_id(int i, std::list<Voyage*> voyages){
     std::cout << "Recherche d'un voyage dont le id est " << i << std::endl;
-    std::list<Voyage>::iterator it;
-    std::list<Voyage>::iterator end;
+    std::list<Voyage*>::iterator it;
+    std::list<Voyage*>::iterator end;
     for (it = voyages.begin(), end = voyages.end(); it != end; ++it) {
-        Voyage v = (*it);
-        std::cout << "Voyage #" << v.Getid() << std::endl;
-        if (v.Getid() == i){
-            std::cout << "On retourne v" << std::endl;
-            return &v;
+        if ((*it)->Getid() == i){
+            return (*it);
         }
 	};
-	return NULL;
 
 }
 
-Voyage* select_voyage(std::list<Voyage> voyages){
+Voyage* select_voyage(std::list<Voyage*> voyages){
     presente_list_voyage(voyages);
     int selected_id = 0;
 
-    Voyage* v = NULL;
+    Voyage *v;
 
     do {
-        v = get_voyage_par_id(selected_id, voyages);
         std::cout << "Veuillez ecrire le numero du voyage selectionne s'il vous plait..." << std::endl;
         std::cin >> selected_id;
         std::cout << "Vous avec selectionne le voyage " << selected_id << std::endl;
-    } while(v == NULL);
+        v = get_voyage_par_id(selected_id, voyages);
+    } while((*v).Getid() == -1);
     return v;
+}
+
+void reserve_places(Voyage *v){
+    (*v).print();
+    std::cout << "Voulez-vous reserver des places sur ce voyage ? (O/n)" << std::endl;
+    char r;
+    std::cin >> r;
+    if (r != 'n' || r != 'N'){
+
+        int nbr_place = 0;
+
+        do {
+            std::cout << "Combien de places voulez-vous rserver ? " << std::endl;
+            std::cin >> nbr_place;
+        } while(nbr_place == 0 || nbr_place > (*v).Getnombreplacesdispo());
+
+        (*v).Reserve_places(nbr_place);
+    }
 }
 
 int main(){
     init();
-    char type_voyage = demande_type_voyage();
-    std::list<Voyage> voyages = repartiteur.get_voyages(type_voyage);
-    Voyage* voyage_selectionne = select_voyage(voyages);
+    char r;
+    do {
+            std::cout << "Désirez vous faire une réservation sur un voyage Montréal - New York ? (O/n)" << std::endl;
+            std::cin >> r;
+            if (r != 'n' && r != 'N' ){
+                char type_voyage = demande_type_voyage();
+                std::list<Voyage*> voyages = repartiteur.get_voyages(type_voyage);
+                Voyage *v = select_voyage(voyages);
+                (*v).print();
+                reserve_places(v);
+                (*v).print();
+            }
+    } while (r != 'n' && r != 'N');
+
 }
