@@ -36,30 +36,56 @@ ex1.o: ex1_personne.cpp
 	g++ -o ex1_personne.o -c ex1_personne.cpp -pedantic
 
 ex2: ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o
-	clang++ ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o -o ex2_reservation -v
+	g++ ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o -o ex2_reservation -v
 	chmod +x ex2_reservation
 
-ex2b: ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o
-	clang++   ex2_reservation.cpp Personne.cpp Client.cpp Autobus.cpp Voyage.cpp Repartiteur.cpp Date.cpp -o ex2_reservation
-	chmod +x ex2_reservation
+#ex2b: ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o
+#	g++   ex2_reservation.cpp Personne.cpp Client.cpp Autobus.cpp Voyage.cpp Repartiteur.cpp Date.cpp -o ex2_reservation
+#	chmod +x ex2_reservation
+
+ex3: ex3_paragraphe.o Mot.o Phrase.o
+	g++ ex3_paragraphe.o Mot.o Phrase.o -o ex3_paragraphe -v
+	chmod +x ex3_paragraphe
+
+Mot.o: Mot.cpp
+	g++ -o Mot.o -c Mot.cpp -pedantic
+
+Phrase.o: Phrase.cpp Mot.cpp
+	g++ -o Phrase.o -c Phrase.cpp -pedantic
 
 Client.o: Client.cpp
-	clang++ -o Client.o -c Client.cpp -pedantic
+	g++ -o Client.o -c Client.cpp -pedantic
 
 Autobus.o: Autobus.cpp
-	clang++ -o Autobus.o -c Autobus.cpp -pedantic
+	g++ -o Autobus.o -c Autobus.cpp -pedantic
 
 Personne.o: Personne.cpp
-	clang++ -o Personne.o -c Personne.cpp -pedantic
+	g++ -o Personne.o -c Personne.cpp -pedantic
 
 Voyage.o: Voyage.cpp Date.cpp Autobus.cpp
-	clang++  -c Voyage.cpp Date.cpp Autobus.cpp -pedantic -v
+	g++  -c Voyage.cpp Date.cpp Autobus.cpp -pedantic -v
 
 Repartiteur.o: Repartiteur.cpp voyage.o
-	clang++ -o Repartiteur.o -c Repartiteur.cpp -pedantic -v
+	g++ -o Repartiteur.o -c Repartiteur.cpp -pedantic -v
 
 Date.o: Date.cpp
-	clang++ -o Date.o -c Date.cpp -pedantic
+	g++ -o Date.o -c Date.cpp -pedantic
+
+ex4_h: ex4_heritage.o Point.o CarreFromPoint.o
+	g++ ex4_heritage.o Point.o CarreFromPoint.o -o ex4_heritage -v
+	chmod +x ex4_heritage
+
+ex4_heritage.o: ex4_heritage.cpp
+	g++ -o ex4_heritage.o -c ex4_heritage.cpp -pedantic
+
+Point.o: Point.cpp
+	g++ -o Point.o -c Point.cpp -pedantic
+
+CarreFromPoint.o: CarreFromPoint.cpp
+	g++ -o CarreFromPoint.o -c CarreFromPoint.cpp -pedantic
+
+CarreByComposition.o: CarreByComposition.cpp
+	g++ -o CarreByComposition.o -c CarreByComposition.cpp -pedantic
 
 clean:
 	rm -rf *.o
