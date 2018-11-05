@@ -84,6 +84,10 @@ Point.o: Point.cpp
 CarreFromPoint.o: CarreFromPoint.cpp
 	g++ -o CarreFromPoint.o -c CarreFromPoint.cpp -pedantic
 
+ex4_c: ex4_composition.o Point.o CarreByComposition.o
+	g++ ex4_composition.o Point.o CarreByComposition.o -o ex4_composition -v
+	chmod +x ex4_composition
+
 CarreByComposition.o: CarreByComposition.cpp
 	g++ -o CarreByComposition.o -c CarreByComposition.cpp -pedantic
 
