@@ -69,11 +69,8 @@ std::istream &operator>>(std::istream &entree, Personne &personne)
     std::cout << std::endl << "Veuillez compléter le formulaire de création de personne : " << std::endl;
     std::cout << "Nom : "<<std::endl;
      std::getline(entree, personne.nom);
-    //entree>> personne.nom;
     std::cout << "Prénom : "<<std::endl;
-    std::cin.ignore();
     std::getline(entree, personne.prenom);
-    //entree>> personne.prenom;
     std::cout << "Age : "<<std::endl;
     entree >> personne.age;
     std::cout << "Téléphone : " << std::endl;

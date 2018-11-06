@@ -28,15 +28,15 @@
 #  gcc -stdlib=libstdc++ $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 
-ex1: ex1_personne.o personne.o
-	g++ -o ex1_personne ex1_personne.o personne.o -v
+ex1: ex1_personne.o Personne.o
+	g++ -o ex1_personne ex1_personne.o Personne.o -v
 	chmod +x ex1_personne
 
 ex1.o: ex1_personne.cpp
 	g++ -o ex1_personne.o -c ex1_personne.cpp -pedantic
 
-ex2: ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o
-	g++ ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o -o ex2_reservation -v
+ex2: ex2_reservation.o Autobus.o Voyage.o Repartiteur.o Date.o
+	g++ ex2_reservation.o Autobus.o Voyage.o Repartiteur.o Date.o -o ex2_reservation -v
 	chmod +x ex2_reservation
 
 #ex2b: ex2_reservation.o Personne.o Client.o Autobus.o Voyage.o Repartiteur.o Date.o

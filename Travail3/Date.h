@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+//Le problème que j'ai en ce moment est que C++ n'a pas vraiment de belle classe toute faite pour gérer des dates alors je m'en suis fait une simple.
 namespace msp {
 class Date
 {

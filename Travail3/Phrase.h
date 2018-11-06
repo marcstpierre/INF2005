@@ -32,6 +32,7 @@ class Phrase
         Mot* trouve_mot(std::string);
 
         void print_chaine();
+
     protected:
     private:
         Mot* premier_mot;
