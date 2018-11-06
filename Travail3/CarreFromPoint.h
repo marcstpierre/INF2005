@@ -3,6 +3,8 @@
 
 #include "Point.h"
 
+//Nous pouvons définir un carré comme étant une "extension" en deux dimensions d'un point.  Le carré est donc une position (x,y) qui a une dimension.
+//La position de chaque points sera alors évaluées lors du dessin du carré à partir de la position du point.
 
 class CarreFromPoint : public Point
 {

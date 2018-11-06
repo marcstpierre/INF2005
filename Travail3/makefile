@@ -71,8 +71,8 @@ Repartiteur.o: Repartiteur.cpp voyage.o
 Date.o: Date.cpp
 	g++ -o Date.o -c Date.cpp -pedantic
 
-ex4_h: ex4_heritage.o Point.o CarreFromPoint.o
-	g++ ex4_heritage.o Point.o CarreFromPoint.o -o ex4_heritage -v
+ex4_h: ex4_heritage.o Point.o CarreFromPoint.o CubeFromCarre.o
+	g++ ex4_heritage.o Point.o CarreFromPoint.o CubeFromCarre.o -o ex4_heritage -v
 	chmod +x ex4_heritage
 
 ex4_heritage.o: ex4_heritage.cpp
@@ -84,12 +84,18 @@ Point.o: Point.cpp
 CarreFromPoint.o: CarreFromPoint.cpp
 	g++ -o CarreFromPoint.o -c CarreFromPoint.cpp -pedantic
 
-ex4_c: ex4_composition.o Point.o CarreByComposition.o
-	g++ ex4_composition.o Point.o CarreByComposition.o -o ex4_composition -v
+CubeFromCarre.o: CubeFromCarre.cpp
+	g++ -o CubeFromCarre.o -c CubeFromCarre.cpp -pedantic
+
+ex4_c: ex4_composition.o Point.o CarreByComposition.o CubeByComposition.o
+	g++ ex4_composition.o Point.o CarreByComposition.o CubeByComposition.o -o ex4_composition -v
 	chmod +x ex4_composition
 
 CarreByComposition.o: CarreByComposition.cpp
 	g++ -o CarreByComposition.o -c CarreByComposition.cpp -pedantic
+
+CubeByComposition.o: CubeByComposition.cpp
+	g++ -o CubeByComposition.o -c CubeByComposition.cpp -pedantic
 
 clean:
 	rm -rf *.o

@@ -4,7 +4,9 @@
 #include "Point.h"
 #include <iostream>
 
-
+//Un carré peut se définir par un ensemble de 4 points (entités de la classe Point).  Pour etre pratique par contre on ne permettra pas à l'utilisateur de l'api de définir lui-meme chaque point.
+//Nous fournirons deux constructeurs : un constructeur qui ne spécifie aucune valeur et un constructeur qui permet de spécifier la position du point "inférieur - gauche".  Ce dernier constructeur construira
+//le Point à partir des coordonnées fournies.  La position de chaque point sera calculer par le méthode calcul_positions() qui est appellée automatiquement par les méthodes Setdimension() et Setp1().
 class CarreByComposition
 {
     public:
@@ -15,7 +17,7 @@ class CarreByComposition
         }
         virtual ~CarreByComposition();
         Point Getp1() { return p1; }
-        void Setp1(Point val) { p1 = val; }
+        void Setp1(Point val) { p1 = val; calcul_positions();}
 
         int Getdimension() { return dimension; }
         void Setdimension(int val) { dimension = val; calcul_positions();}

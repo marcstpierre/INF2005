@@ -5,6 +5,9 @@
 #include <iostream>
 #include <string>
 
+
+//Comme la classe Mot, la classe Phrase permet de chainer des phrases pour en faire des paragraphes.  Là aussi il est possible d'enrichir la phrase par une catégorisation (par exemple : phrase intérogative, etc.)
+//La Phrase est doublement chainée et contient un pointeur vers le premier élément d'une chaine de Mot.
 class Phrase
 {
 
@@ -25,6 +28,7 @@ class Phrase
 
         std::string Gettype_phrase() { return type_phrase; }
         void Settype_phrase(std::string val) { type_phrase = val; }
+
         Mot* trouve_mot(std::string);
 
         void print_chaine();
